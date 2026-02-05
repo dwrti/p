@@ -1,4 +1,4 @@
-name: Precise Video Compression 195MB - Episode 06
+name: Precise Video Compression 195MB - Episode 09
 
 on:
   workflow_dispatch:
@@ -12,16 +12,16 @@ jobs:
 
       - name: Download Video
         run: |
-          # الرابط الجديد للحلقة 06
-          curl -L 'https://abra--5e4bd524.api.cosmic-crab.buzz/f156c9e34b9b191a93ec53d5e1587ce27f3151ee/%D8%A3%D8%A8%D8%B7%D8%A7%D9%84%20%D8%A7%D9%84%D8%AF%D9%8A%D8%AC%D9%8A%D8%AA%D8%A7%D9%84%20%D8%B3%D8%A8%D9%8A%D8%B3%D8%AA%D9%88%D9%86%20265/06.mp4?api-key=8acbcf1e-732c-4574-a3bf-27e6a85b86f1&download=true&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzAzODI1NTAsInJhdGUiOiI1TSIsInJvbGUiOiJmcmVlIiwic2Vzc2lvbklEIjoiTVRjMk9UQTROREF6T1h4T2QzZEJUa1pLVTFaR1pGUlRWbWhGVGpCNFZsVnJZM2xTUlhSTFZWWm9VbE5zWkZwWFJFMTVVekZSZWxWRlpGaFVSbHBYVkd4d1JsUkZiRkJTYTJoR1ZGWmFWbFpWYUVkV01FVTlmT1I0QXRnWXJGOUV3NU93bHl4Uy13Nk8xY0lPZjlfR2VnbjI3SFI5by1YRyIsImRvbWFpbiI6IndlYnRvci5pbyIsImFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzE2LjYuMSBTYWZhcmkvNjA1LjEuMTUiLCJyZW1vdGVBZGRyZXNzIjoiMjAwMToxNmE0OjIwMzo3ZDE1OmFkN2Q6YzNmOmYxNTA6NzQwIn0.czX6KqixKR12G3tkN1rszeSyj_GUpIJwVMTa4YX57gM' -o input_video.mp4
+          # الرابط الجديد للحلقة 09
+          curl -L 'https://abra--5e4bd524.api.cosmic-crab.buzz/f156c9e34b9b191a93ec53d5e1587ce27f3151ee/%D8%A3%D8%A8%D8%B7%D8%A7%D9%84%20%D8%A7%D9%84%D8%AF%D9%8A%D8%AC%D9%8A%D8%AA%D8%A7%D9%84%20%D8%B3%D8%A8%D9%8A%D8%B3%D8%AA%D9%88%D9%86%20265/09.mp4?api-key=8acbcf1e-732c-4574-a3bf-27e6a85b86f1&download=true&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzAzOTkzNjQsInJhdGUiOiI1TSIsInJvbGUiOiJmcmVlIiwic2Vzc2lvbklEIjoiTVRjMk9UQTROREF6T1h4T2QzZEJUa1pLVTFaR1pGUlRWbWhGVGpCNFZsVnJZM2xTUlhSTFZWWm9VbE5zWkZwWFJFMTVVekZSZWxWRlpGaFVSbHBYVkd4d1JsUkZiRkJTYTJoR1ZGWmFWbFpWYUVkV01FVTlmT1I0QXRnWXJGOUV3NU93bHl4Uy13Nk8xY0lPZjlfR2VnbjI3SFI5by1YRyIsImRvbWFpbiI6IndlYnRvci5pbyIsImFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzE2LjYuMSBTYWZhcmkvNjA1LjEuMTUiLCJyZW1vdGVBZGRyZXNzIjoiMjAwMToxNmE0OjI2ZDo0YjY0OmRkM2U6ZDMxZjo3MTQyOjQ0MmEifQ.rs17Ib44W7Zj4QGJVqdGtEUQn8TXJWvu4JvEqlOI07k' -o input_video.mp4
 
       - name: Balanced Compression (Target 195MB)
         run: |
-          # Bitrate 990k هو الأنسب لتقليل 218MB إلى 195MB مع الحفاظ على التفاصيل
+          # استخدام Bitrate 985k لتقليل الحجم من 219MB إلى 195MB بدقة
           # Pass 1
-          ffmpeg -y -i input_video.mp4 -c:v libx264 -b:v 990k -preset medium -pass 1 -an -f mp4 /dev/null
-          # Pass 2
-          ffmpeg -y -i input_video.mp4 -c:v libx264 -b:v 990k -preset medium -pass 2 -c:a copy output_video.mp4
+          ffmpeg -y -i input_video.mp4 -c:v libx264 -b:v 985k -preset medium -pass 1 -an -f mp4 /dev/null
+          # Pass 2 (نسخ الصوت الأصلي للحفاظ على النقاء)
+          ffmpeg -y -i input_video.mp4 -c:v libx264 -b:v 985k -preset medium -pass 2 -c:a copy output_video.mp4
 
       - name: Check Final Size
         run: du -sh output_video.mp4

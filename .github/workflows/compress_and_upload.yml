@@ -1,4 +1,4 @@
-name: Video Compression Bot (Max Quality)
+name: Precise Video Compression 195MB
 
 on:
   workflow_dispatch:
@@ -12,20 +12,24 @@ jobs:
 
       - name: Download Video
         run: |
-          # الرابط المحدث الذي أرفقته
-          curl -L 'https://abra--5e4bd524.api.cosmic-crab.buzz/f156c9e34b9b191a93ec53d5e1587ce27f3151ee/%D8%A3%D8%A8%D8%B7%D8%A7%D9%84%20%D8%A7%D9%84%D8%AF%D9%8A%D8%AC%D9%8A%D8%AA%D8%A7%D9%84%20%D8%B3%D8%A8%D9%8A%D8%B3%D8%AA%D9%88%D9%86%20265/04.mp4?api-key=8acbcf1e-732c-4574-a3bf-27e6a85b86f1&download=true&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzAzMzY3MDksInJhdGUiOiI1TSIsInJvbGUiOiJmcmVlIiwic2Vzc2lvbklEIjoiTVRjMk9UQTROREF6T1h4T2QzZEJUa1pLVTFaR1pGUlRWbWhGVGpCNFZsVnJZM2xTUlhSTFZWWm9VbE5zWkZwWFJFMTVVekZSZWxWRlpGaFVSbHBYVkd4d1JsUkZiRkJTYTJoR1ZGWmFWbFpWYUVkV01FVTlmT1I0QXRnWXJGOUV3NU93bHl4Uy13Nk8xY0lPZjlfR2VnbjI3SFI5by1YRyIsImRvbWFpbiI6IndlYnRvci5pbyIsImFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzE2LjYuMSBTYWZhcmkvNjA1LjEuMTUiLCJyZW1vdGVBZGRyZXNzIjoiMjAwMToxNmE0OjI2ZDo0YjY0OmY0MTY6YTRkYzplMzo0MzFiIn0.Xt6x-TvhizCuh7z0N9Utz7sZ09h8bsZc-RYDcfH_DiU' -o input_video.mp4
+          # الرابط الجديد الذي أرفقته (تأكد من استبداله دائماً إذا انتهى التوكن)
+          curl -L 'https://abra--5e4bd524.api.cosmic-crab.buzz/f156c9e34b9b191a93ec53d5e1587ce27f3151ee/%D8%A3%D8%A8%D8%B7%D8%A7%D9%84%20%D8%A7%D9%84%D8%AF%D9%8A%D8%AC%D9%8A%D8%AA%D8%A7%D9%84%20%D8%B3%D8%A8%D9%8A%D8%B3%D8%AA%D9%88%D9%86%20265/04.mp4?api-key=8acbcf1e-732c-4574-a3bf-27e6a85b86f1&download=true&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzAzNjE1NzMsInJhdGUiOiI1TSIsInJvbGUiOiJmcmVlIiwic2Vzc2lvbklEIjoiTVRjMk9UQTROREF6T1h4T2QzZEJUa1pLVTFaR1pGUlRWbWhGVGpCNFZsVnJZM2xTUlhSTFZWWm9VbE5zWkZwWFJFMTVVekZSZWxWRlpGaFVSbHBYVkd4d1JsUkZiRkJTYTJoR1ZGWmFWbFpWYUVkV01FVTlmT1I0QXRnWXJGOUV3NU93bHl4Uy13Nk8xY0lPZjlfR2VnbjI3SFI5by1YRyIsImRvbWFpbiI6IndlYnRvci5pbyIsImFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzE2LjYuMSBTYWZhcmkvNjA1LjEuMTUiLCJyZW1vdGVBZGRyZXNzIjoiMjAwMToxNmE0OjI2ZDo0YjY0OmY0MTY6YTRkYzplMzo0MzFiIn0.rg7RTpPPRh-DrDzz5L3Nzh-xjqfW9Ri1UyjcBXN87fI' -o input_video.mp4
 
-      - name: Extreme Quality Compression (Target 197MB)
+      - name: Balanced Compression (Target 195MB)
         run: |
-          # استخدام Two-Pass مع خيار veryslow للحصول على أفضل معالجة بصرية ممكنة
+          # استخدام Bitrate قيمته 1030k يضمن الوصول لحجم بين 193-196MB
+          # السرعة medium تعطي جودة ممتازة في وقت معقول جداً
           # Pass 1
-          ffmpeg -y -i input_video.mp4 -c:v libx264 -b:v 1070k -preset veryslow -pass 1 -an -f mp4 /dev/null
-          # Pass 2 (مع نسخ الصوت الأصلي دون ضغط)
-          ffmpeg -y -i input_video.mp4 -c:v libx264 -b:v 1070k -preset veryslow -pass 2 -c:a copy output_video.mp4
+          ffmpeg -y -i input_video.mp4 -c:v libx264 -b:v 1030k -preset medium -pass 1 -an -f mp4 /dev/null
+          # Pass 2 (الحفاظ على الصوت الأصلي)
+          ffmpeg -y -i input_video.mp4 -c:v libx264 -b:v 1030k -preset medium -pass 2 -c:a copy output_video.mp4
+
+      - name: Check Final Size
+        run: du -sh output_video.mp4
 
       - name: Upload to Catbox
         run: |
           RESPONSE=$(curl -F "reqtype=fileupload" -F "fileToUpload=@output_video.mp4" https://catbox.moe/user/api.php)
           echo "-------------------------------------"
-          echo "الرابط النهائي: $RESPONSE"
+          echo "Done! Direct Link: $RESPONSE"
           echo "-------------------------------------"
